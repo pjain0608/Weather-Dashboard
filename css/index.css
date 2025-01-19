@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1c1c1c;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background Video */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Container Styles */
+.container {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.container-heading {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.container-heading h1 {
+    font-family: cursive;
+}
+
+.container-description form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+form input {
+    width: 70%;
+    font-size: 1.2rem;
+    border: none;
+    padding: 1rem;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    /* transition: all 0.3s ease; */
+}
+
+form input:focus {
+    /* background-color: #333; */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+form button {
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #e65c00;
+}
+
+/* Alert Message Styles */
+.alert-container {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;  /* Ensures it appears above other content */
+    width: 90%;
+    max-width: 400px;
+}
+
+.alert-message {
+    background-color: #f44336;  /* Red color for alert */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Fade-in animation for the alert message */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.city-name {
+    width: 100%;
+    padding: 1rem;
+    /* border: 2px solid red; */
+}
+
+.name {
+    /* border: 2px solid green; */
+    width: max-content;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    cursor: pointer;
+    color: black;
+}
+
+.current {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.current1 {
+    width:15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid white; */
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.head {
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    color: black;
+}
+
+.head img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.three {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.title h2 {
+    border: 2px solid;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+/* Table Styles */
+.contents table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    animation: fadeIn 1s ease-in-out;
+    cursor: pointer;
+}
+
+.contents table thead {
+    background-color: #ff6600;
+    color: white;
+}
+
+.contents table thead th {
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+.contents table tbody tr {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.contents table tbody tr:hover {
+    background-color: rgba(255, 102, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.contents table tbody td {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    border-bottom: 1px solid #444;
+    color: white;
+}
+
+.contents table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Add animations to table rows */
+.contents table tbody tr {
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards;
+}
+
+.contents table tbody tr:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.contents table tbody tr:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.contents table tbody tr:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Slide-in animation for table rows */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

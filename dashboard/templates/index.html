@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/1146/1146869.png">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'videos/1893623-uhd_3840_2160_25fps.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <div class="container-heading">
+            <h1>Weather Information 🌤️</h1>
+        </div>
+        <div class="container-description">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="city" placeholder="Enter city name" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Show Error if there's an error message -->
+    {% if error_message %}
+    <div class="alert-container">
+        <div class="alert-message">
+            <p>{{ error_message }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if weather_data %}
+    <div class="details">
+        <div class="city-name">
+            <div class="name">
+                <h1>{{ weather_data.city|capfirst }}</h1>
+            </div>
+        </div>
+        <div class="current">
+            <div class="temp current1">
+                <div class="head">
+                    <h2>Temperature</h2>
+                    <img src="https://cdn-icons-png.flaticon.com/128/3815/3815449.png" alt="">
+                </div>
+                <div class="body">
+                    <h2>{{ weather_data.temperature }}</h2>
+                </div>
+            </div>
+            <div class="wind-speed current1">
+                <div class="head">
+                    <h2>Environment</h2>
+                    <img src="https://cdn-icons-png.flaticon.com/128/8653/8653118.png" alt="">
+                </div>
+                <div class="body">
+                    <h2>{{ weather_data.description }}</h2>
+                </div>
+            </div>
+            <div class="description current1">
+                <div class="head">
+                    <h2>Wind Speed</h2>
+                    <img src="https://cdn-icons-png.flaticon.com/128/1506/1506761.png" alt="">
+                </div>
+                <div class="body">
+                    <h2>{{ weather_data.wind }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="three">
+            <div class="title">
+                <h2>3 Days Forecast</h2>
+            </div>
+            <div class="contents">
+                <table>
+                    <thead>
+                        <th>Day</th>
+                        <th>Temperature</th>
+                        <th>Wind-Speed</th>
+                    </thead>
+                    {% for day in weather_data.forecast %}
+                    <tbody>
+                        <tr>
+                            <td>{{ day.day }}</td>
+                            <td>{{ day.temperature }}</td>
+                            <td>{{ day.wind }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        // Function to hide the alert after 5 seconds
+        setTimeout(function() {
+            const alertMessage = document.querySelector('.alert-message');
+            if (alertMessage) {
+                alertMessage.style.display = 'none';
+            }
+        }, 2500);  // 5000 milliseconds = 5 seconds
+    </script>
+
+</body>
+</html>
